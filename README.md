@@ -1,9 +1,9 @@
 # Sample VOD application developed using SparkUI framework (Px Framework) and Java Script. This application runs on top of Spark (PxScene) app engine.
 
-# Quick fix for allignment issues on multiple platform windows, Linux and RPi
-    - Observed some allignment issues (need to change y positions) So added Fix for multiple platforms windows, Linux and RPI
-    - For windows platform if using (spark.exe executable) nothing need to be changed  
-    - For Linux or RPI need to change y positions, please follow given comments inline in app.js 
+# For windows platform ( if using spark.exe executable) nothing need to be changed
+# Quick fix for allignment issues on multiple platform Linux and RPi
+    - Observed some allignment issues (need to change y positions) So added Fix for Linux and RPI platform
+    - please follow given comments inline in app.js 
 
 Download Spark (PxScene) app engine link: https://www.sparkui.org/docs/getting_started.html
 
