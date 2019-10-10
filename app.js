@@ -1,4 +1,9 @@
-// scene is provided to the module when it is created
+/**
+* Observe some allignment issues So added Fix for multiple platform windows, Linux, RPI
+* For windows platform (spark.exe executable) nothing need to be changed, this piece of code works fine  
+* For Linux or RPI need to change y positions, so Just comment and uncomment commented line, follow given comments inline below
+* Scene is provided to the module when it is created
+*/ 
 px.import({
     scene: 'px:scene.1.js',
     keys: 'px:tools.keys.js'
@@ -105,8 +110,8 @@ px.import({
     const mediaTitleFontSize = 16;
     const epsTitleHeight = 20;
     const epsFontSize = 12;
-    const unHighlitedFontColor = "#aaaaaa";
-    const highlitedFontColor = 4294967295;
+    const unHighlitedFontColor = 0x555555ff; // color gray
+    const highlitedFontColor = 0xffffffff; // color white
     
     let arrayGridParentFirstRow = [];
     let arrayGridParentSecondRow = [];
@@ -145,7 +150,10 @@ px.import({
 
     // fourth row grid | no of grid is 12 and col is 6*
     const fourthRowTitleContainerTop = thirdRowContainerTop + thirdRowContainerHeight + 25;
-    const fourthRowContainerTop = fourthRowTitleContainerTop + 25;
+ 
+    const fourthRowContainerTop = fourthRowTitleContainerTop + 25; // If using Linux or RPI plarform comment this line
+    // const fourthRowContainerTop = fourthRowTitleContainerTop; // If using Linux or RPI plarform uncomment this line 
+    
     const fourthRowContainerHeight = 140;
     const fourthRowGridWidth = 180;
     const fourthRowGridHeight = 60;
@@ -362,15 +370,18 @@ px.import({
         GotoTopObj = scene.create({
             t: "object",
             x: GotoTopLeft,
-            y: fifthRowContainerTop + fifthRowContainerHeight + 25,
-            w: GotoTopWidth,
+            y: fifthRowContainerTop + fifthRowContainerHeight + 25, // If using Linux or RPI plarform comment this line
+             // y: fifthRowContainerTop + fifthRowContainerHeight + 50, // If using Linux or RPI plarform uncomment this line
+	    w: GotoTopWidth,
             h: GotoTopHeight,
             parent: container
         });
+
         GotoTopBtn = scene.create({
             t: "image",
             x: -15,
-            y: -28,
+            y: -28, // If using Linux or RPI plarform comment this line
+	          // y: 0, // If using Linux or RPI plarform uncomment this line
             url: roundedShortCutBtn,
             w: GotoTopWidth,
             h: GotoTopHeight,
@@ -380,7 +391,8 @@ px.import({
             t: "textBox",
             text: "Go To Top",
             x: 0,
-            y: 0,
+            y: 0, // If using Linux or RPI plarform comment this line
+	          // y: -8, // If using Linux or RPI plarform uncomment this line
             w: GotoTopWidth,
             h: GotoTopHeight,
             truncation: 1,
@@ -512,8 +524,10 @@ px.import({
             fontUrl: fontUrllight,
             alignHorizontal: 1,
             alignVertical: 1,
-            x: -7,
-            y: 6,
+            x: -7, // If using Linux or RPI plarform comment this line
+	          // x: -8, // If using Linux or RPI plarform uncomment this line
+            y: 6, // If using Linux or RPI plarform comment this line
+	          // y: -7, // If using Linux or RPI plarform uncomment this line
             parent: moreInfoBtnContainer
         });
 		
@@ -626,7 +640,8 @@ px.import({
                 t: "object",
                 id: "fourthRowContainer" + (firstgridIndex + 1),
                 x: gridleft,
-                y: rowfourthGridColTop,
+                y: rowfourthGridColTop, // If using Linux or RPI plarform comment this line
+	              // y: rowfourthGridColTop+50, // If using Linux or RPI plarform uncomment this line
                 w: fourthRowGridWidth,
                 h: fourthRowGridHeight,
                 parent: fourthRowContainer
@@ -1014,7 +1029,8 @@ px.import({
                 id: "btnTitle",
                 text: "No Media ",
                 x: 0,
-                y: 0,
+                y: 0, // If using Linux or RPI plarform comment this line
+	            // y: -36, // If using Linux or RPI plarform uncomment this line
                 w: fourthRowGridWidth,
                 h: fourthRowGridHeight,
                 pixelSize: mediaTitleFontSize,
@@ -1344,7 +1360,7 @@ px.import({
         }else{
                 imgHighlighter4.url = roundedShortCutBtn;
                 let heighlightTextColor = fourthColContainer.getObjectById("btnTitle");
-                heighlightTextColor.textColor = 2863311615;
+                heighlightTextColor.textColor = unHighlitedFontColor;
             }
         if(containerPos == 5){
             fifthColContainer = arrayGridParentFifthRow[0];
@@ -1360,7 +1376,7 @@ px.import({
             GotoTop.textColor = highlitedFontColor;
         } else {
             GotoTopBtn.url = roundedShortCutBtn;
-            GotoTop.textColor = 2863311615;
+            GotoTop.textColor = unHighlitedFontColor;
         }
     }
     
@@ -1381,7 +1397,7 @@ function fourthRowSCBtnFocused(index, keyPress){
             let prevImageHighlighter = prevSelectedContainer.getObjectById("scBtn");
             prevImageHighlighter.url = roundedShortCutBtn;
             let heighlightTextColor = fourthColContainer.getObjectById("btnTitle");
-            heighlightTextColor.textColor = 2863311615; // This accepts Android (android.graphics.Color) codes.
+            heighlightTextColor.textColor = unHighlitedFontColor;
         }  
     }
     
@@ -1392,7 +1408,7 @@ function fourthRowSCBtnFocused(index, keyPress){
                 let lastImageHighlighter = lastSelectedContainer.getObjectById("scBtn");
                 lastImageHighlighter.url = roundedShortCutBtn;
                 let heighlightTextColor = fourthColContainer.getObjectById("btnTitle");
-                heighlightTextColor.textColor = 2863311615; // This accepts Android (android.graphics.Color) codes.
+                heighlightTextColor.textColor = unHighlitedFontColor;
             }
         }
     
@@ -1400,7 +1416,7 @@ function fourthRowSCBtnFocused(index, keyPress){
         imgHighlighter4 = fourthColContainer.getObjectById("scBtn");
         imgHighlighter4.url = roundedSCBtnHighlighter;
         let heighlightTextColor = fourthColContainer.getObjectById("btnTitle");
-        heighlightTextColor.textColor = highlitedFontColor; // This accepts Android (android.graphics.Color) codes.
+        heighlightTextColor.textColor = highlitedFontColor;
     }else{
         imgHighlighter4.url = roundedShortCutBtn;
     }
